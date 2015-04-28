@@ -1,0 +1,16 @@
+{
+  "name":        "jarmo-influxdb-reporter",
+  "version":     "0.1.0",
+  "description": "InfluxDB reporter for usage with Jarmo.",
+
+  "scripts": {
+
+  },
+
+  "keywords": [
+    "jarmo", "reporter", "influxdb"
+  ],
+
+  "author":  "taneli.hartikainen@jamk.fi",
+  "license": "MIT"
+}
