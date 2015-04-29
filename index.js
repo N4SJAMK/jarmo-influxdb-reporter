@@ -1,4 +1,4 @@
-import http from 'http';
+import request from 'superagent';
 
 /**
  * InfluxDB reporter.
@@ -53,38 +53,13 @@ export default {
  * @return {Promise} Promise resolved when the data has been sent to InfluxDB.
  */
 function post(payload, config) {
-	let options = {
-		host: config.host,
-		port: config.port,
-
-		// We use 'basic' authentication for our request.
-		auth: `${config.username}:${config.password}`,
-
-		path:   '/write',
-		method: 'POST',
-
-		headers: {
-			'Content-Type':   'application/json',
-			'Content-Length': payload.length
-		}
-	}
 	return new Promise((resolve, reject) => {
-		// Create the request based on the options we defined above. If the
-		// response is OK everything went better than expected.
-		let request = http.request(options, (res) => {
-			if(res.statusCode === 200) {
-				return resolve();
-			}
-			return reject(new Error(`Expected 200. Got ${res.statusCode}.`));
-		});
-
-		// Add a listener for 'error' events, so that they get caught.
-		request.once('error', reject);
-
-		// Write out our data and close the request to signify no that no more
-		// data will be sent.
-		request.write(payload);
-		request.end();
+		// We create a POST request object to the configured InfluxDB host.
+		let req = request.post(`${config.host}:${config.port}/write`)
+		// We use 'basic' authentication for our request.
+			.auth(config.username, config.password);
+		// The promise is resolved at the end of the request.
+		return req.end((err, res) => err ? reject(err) : resolve());
 	});
 }
 

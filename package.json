@@ -1,6 +1,6 @@
 {
   "name":        "jarmo-influxdb-reporter",
-  "version":     "0.1.0",
+  "version":     "0.1.1",
   "description": "InfluxDB reporter for usage with Jarmo.",
 
   "keywords": [
@@ -10,5 +10,9 @@
   "repository": "N4SJAMK/jarmo-influxdb-reporter",
 
   "author":  "taneli.hartikainen@jamk.fi",
-  "license": "MIT"
+  "license": "MIT",
+
+  "dependencies": {
+    "superagent": "1.2.0"
+  }
 }
