@@ -3,13 +3,11 @@
   "version":     "0.1.0",
   "description": "InfluxDB reporter for usage with Jarmo.",
 
-  "scripts": {
-
-  },
-
   "keywords": [
     "jarmo", "reporter", "influxdb"
   ],
+
+  "repository": "N4SJAMK/jarmo-influxdb-reporter",
 
   "author":  "taneli.hartikainen@jamk.fi",
   "license": "MIT"
