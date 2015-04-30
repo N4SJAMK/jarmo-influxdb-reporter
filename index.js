@@ -56,8 +56,8 @@ function post(payload, config) {
 	return new Promise((resolve, reject) => {
 		// We create a POST request object to the configured InfluxDB host.
 		let req = request.post(`${config.host}:${config.port}/write`)
-		// We use 'basic' authentication for our request.
-			.auth(config.username, config.password);
+			// We use 'basic' authentication for our request.
+			.auth(config.username, config.password).send(payload);
 		// The promise is resolved at the end of the request.
 		return req.end((err, res) => err ? reject(err) : resolve());
 	});
