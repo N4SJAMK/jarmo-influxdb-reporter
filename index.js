@@ -35,8 +35,9 @@ export default {
 			if(points.length === 0) return resolve();
 
 			let payload = {
-				points:   points.map(format),
-				database: this.config.database
+				points:          points.map(format),
+				database:        this.config.database,
+				retentionPolicy: this.config.retentionPolicy || 'default'
 			}
 			return post(JSON.stringify(payload), this.config)
 				.then(resolve, reject);
