@@ -35,8 +35,9 @@ export default {
 			if(points.length === 0) return resolve();
 
 			let payload = {
-				points:   points.map(format),
-				database: this.config.database
+				points:          points.map(format),
+				database:        this.config.database,
+				retentionPolicy: this.config.retentionPolicy || 'default'
 			}
 			return post(JSON.stringify(payload), this.config)
 				.then(resolve, reject);
@@ -68,11 +69,11 @@ function post(payload, config) {
  */
 function format(point) {
 	return {
-		name:   point.data.name,
-		tags:   point.data.tags,
-		fields: point.data.fields,
+		measurement:  point.data.name,
+		tags:         point.data.tags,
+		fields:       point.data.fields,
 		// If the data itself contains a timestamp, we use that instead of the
 		// default timestamp added when the message is received here.
-		timestamp: point.data.timestamp || point.timestamp
+		timestamp:    point.data.timestamp || point.timestamp
 	}
 }
